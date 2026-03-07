@@ -45,11 +45,10 @@ function mostrarTarefa () {
     lista.innerHTML = tarefas.map((tarefa, index) => `
         <li>
         <input type="checkbox" onclick="inputToggle(${index})" ${tarefa.concluida ? "checked" : "" }> 
-        <span>${tarefa.texto}</span>
+        <span class="${tarefa.concluida ? "done" : "" }">${tarefa.texto}</span>
         <div class="acoes">
         <button class="edit" onclick="editTarefa(${index})">Editar</button>
         <button class="delete" onclick="excluirTarefa(${index})">Deletar</button>
-        </li>
         </li>`)
         .join("")
 }        
