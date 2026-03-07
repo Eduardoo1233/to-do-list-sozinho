@@ -12,15 +12,18 @@ function adicionarTarefa () {
     if (inputTarefa.value.trim() == "") {
         alert("Você não pode enviar uma tarefa vazia!")
     } else {
-        tarefas.push(inputTarefa.value)
+        tarefas.push({
+            texto: inputTarefa.value,
+            concluida: false
+        })
         salvarTarefas()
     }
 }
 
 function editTarefa (index) {
-    const novaTarefa = prompt("Editar Tarefa:", tarefas[index])
+    const novaTarefa = prompt("Editar Tarefa:", tarefas[index].texto)
     if (novaTarefa !== null) {
-        tarefas[index] = novaTarefa
+        tarefas[index].texto = novaTarefa
         salvarTarefas()
         mostrarTarefa()
     }
@@ -32,11 +35,17 @@ function excluirTarefa (index) {
     mostrarTarefa()
 }
 
+function inputToggle(index) {
+    tarefas[index].concluida = !tarefas[index].concluida
+    salvarTarefas()
+    mostrarTarefa()
+}
+
 function mostrarTarefa () {
     lista.innerHTML = tarefas.map((tarefa, index) => `
         <li>
-        <input type="checkbox">
-        <span>${tarefa}</span>
+        <input type="checkbox" onclick="inputToggle(${index})" ${tarefa.concluida ? "checked" : "" }> 
+        <span>${tarefa.texto}</span>
         <div class="acoes">
         <button class="edit" onclick="editTarefa(${index})">Editar</button>
         <button class="delete" onclick="excluirTarefa(${index})">Deletar</button>
