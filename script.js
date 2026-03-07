@@ -3,6 +3,9 @@ let tarefas = JSON.parse(localStorage.getItem("tarefas")) || []
 const inputTarefa = document.getElementById('inputTarefa')
 const btnEnviar = document.getElementById('submitTarefa')
 const lista = document.getElementById('lista')
+const totalTarefas = document.getElementById("totalTarefas")
+const totalTarefasConcluidas = document.getElementById("totalTarefasConcluidas")
+const totalTarefasPendentes = document.getElementById("totalTarefasPendentes")
 
 function limparInput () {
     inputTarefa.value = ""
@@ -17,6 +20,7 @@ function adicionarTarefa () {
             concluida: false
         })
         salvarTarefas()
+        contadorTarefas()
     }
 }
 
@@ -51,10 +55,22 @@ function mostrarTarefa () {
         <button class="delete" onclick="excluirTarefa(${index})">Deletar</button>
         </li>`)
         .join("")
+        contadorTarefas()
 }        
 
 function salvarTarefas() {
     localStorage.setItem("tarefas", JSON.stringify(tarefas))
+}
+
+function contadorTarefas() {
+    
+    const total = tarefas.length
+    const concluidas = tarefas.filter(tarefa => !tarefa.concluida).length
+    const pendentes = total - concluidas
+    
+    totalTarefas.textContent = total
+    totalTarefasConcluidas.textContent = concluidas
+    totalTarefasPendentes.textContent = pendentes
 }
 
 
