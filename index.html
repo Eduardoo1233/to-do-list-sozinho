@@ -7,17 +7,39 @@
     <title>Too-do-list</title>
 </head>
 <body>
-    <div>
-        <input type="text" id="inputTarefa" placeholder="Digite uma tarefa" required>
-        <button type="submit" id="submitTarefa">Enviar</button>
-    </div>
-    <div id="dashboardTarefas">
-        <div id="totalTarefasConcluidas">0</div>
-        <div id="totalTarefas">0</div>
-        <div id="totalTarefasPendentes">0</div>
-    </div>
-    <div>
-        <ul id="lista"></ul>
+    
+    <div id="container">
+        <h1>My To-do-List</h1>
+        
+        <div class="input-group">
+            <input type="text" id="inputTarefa" placeholder="Digite uma tarefa" required>
+            <button type="submit" id="submitTarefa">Enviar</button>
+        </div>
+        
+        <div class="dashboard" id="dashboardTarefas">
+            <div class="card card-concluida">
+                <span class="card-number" id="totalTarefasConcluidas">0</span>
+                <p class="card-lable">CONCLUIDAS</p>
+            </div>
+            <div class="card card-total">
+                <span class="card-number" id="totalTarefas">0</span>
+                <p class="card-lable">TOTAL</p>
+            </div>
+            <div class="card card-pendente">
+                <span class="card-number" id="totalTarefasPendentes">0</span>
+                <p class="card-lable">PENDENTES</p>
+            </div>
+        </div>
+
+        <div class="filtros" id="filter">
+            <button type="submit" id="filterTodas">Todas</button>
+            <button type="submit" id="filterPendentes">Pendentes</button>
+            <button type="submit" id="filterConcluidas">Concluidas</button>
+        </div>
+
+        <div>
+            <ul id="lista"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
